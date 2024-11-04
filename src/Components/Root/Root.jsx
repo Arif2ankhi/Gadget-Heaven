@@ -1,9 +1,12 @@
+import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
 
 
 const Root = () => {
     return (
         <div>
-            <h3>Hello From Root</h3>
+           <Navbar></Navbar>
+           <Footer></Footer>
         </div>
     );
 };
