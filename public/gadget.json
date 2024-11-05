@@ -1,0 +1,460 @@
+ [
+
+{
+
+  "id": 1,
+
+  "title": "UltraBook Pro 2024",
+
+  "image": "https://i.ibb.co/cgvF8cT/1-Ultrabook-pro.jpg",
+
+  "category": "Laptops",
+
+  "price": 1599.99,
+
+  "description": "The UltraBook Pro 2024 features a sleek design with a powerful Intel i9 processor and 32GB RAM.",
+
+  "specification": {
+
+    "processor": "Intel i9",
+
+    "ram": "32GB",
+
+    "storage": "1TB SSD",
+
+    "display": "15.6-inch 4K"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.8,
+
+  "brand": "UltraTech"
+
+},
+
+{
+
+  "id": 2,
+
+  "title": "SmartPhone XZ 12",
+
+  "image": "https://i.ibb.co/khC9GCn/2-Smart-Phone-XZ-12.jpg",
+
+  "category": "Phones",
+
+  "price": 999.99,
+
+  "description": "Experience unparalleled speed with the SmartPhone XZ 12's advanced AI camera and 5G connectivity.",
+
+  "specification": {
+
+    "processor": "Snapdragon 8 Gen 2",
+
+    "ram": "12GB",
+
+    "storage": "256GB",
+
+    "camera": "108MP"
+
+  },
+
+  "availability": "Pre-Order",
+
+  "rating": 4.6,
+
+  "brand": "SmartTech"
+
+},
+
+{
+
+  "id": 3,
+
+  "title": "WearFit Max Smart Watch",
+
+  "image": "https://i.ibb.co/sV6XfMv/3-Wearfit-max-smart-watch.jpg",
+
+  "category": "Smart Watches",
+
+  "price": 299.99,
+
+  "description": "The WearFit Max offers advanced health tracking features and seamless smartphone integration.",
+
+  "specification": {
+
+    "battery": "10 days",
+
+    "water_resistance": "IP68",
+
+    "features": ["Heart Rate Monitor", "GPS", "Sleep Tracking"]
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.5,
+
+  "brand": "WearTech"
+
+},
+
+{
+
+  "id": 4,
+
+  "title": "NextGen Wireless Earbuds",
+
+  "image": "https://i.ibb.co/7WqPWC2/4-1-next-gen-air-bud.png",
+
+  "category": "Accessories",
+
+  "price": 149.99,
+
+  "description": "Experience high-fidelity sound with noise cancellation and 20 hours of playtime.",
+
+  "specification": {
+
+    "battery_life": "20 hours",
+
+    "water_resistance": "IPX7",
+
+    "features": ["Touch Controls", "Voice Assistant"]
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.7,
+
+  "brand": "AudioWave"
+
+},
+
+{
+
+  "id": 5,
+
+  "title": "MacBook Air 2024",
+
+  "image": "https://i.ibb.co/ySTQLD7/5-Macbook-air-2024.jpg",
+
+  "category": "Laptops",
+
+  "price": 1299.99,
+
+  "description": "The MacBook Air 2024 is lighter, faster, and has an improved Retina display.",
+
+  "specification": {
+
+    "processor": "Apple M2",
+
+    "ram": "16GB",
+
+    "storage": "512GB SSD",
+
+    "display": "13.3-inch Retina"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.9,
+
+  "brand": "Apple"
+
+},
+
+{
+
+  "id": 6,
+
+  "title": "iPhone 15 Pro",
+
+  "image": "https://i.ibb.co/Hxc67qx/6-iphone-15-pro.jpg",
+
+  "category": "Phones",
+
+  "price": 1099.99,
+
+  "description": "The iPhone 15 Pro features a stunning new design, A17 chip, and enhanced camera capabilities.",
+
+  "specification": {
+
+    "processor": "A17 Bionic",
+
+    "ram": "8GB",
+
+    "storage": "256GB",
+
+    "camera": "48MP"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.8,
+
+  "brand": "Apple"
+
+},
+
+{
+
+  "id": 7,
+
+  "title": "Gaming Monitor 27\" 4K",
+
+  "image": "https://i.ibb.co/kmCdm4P/7-Gaming-monitor.png",
+
+  "category": "Accessories",
+
+  "price": 499.99,
+
+  "description": "A 27-inch 4K gaming monitor with 144Hz refresh rate and adaptive sync technology.",
+
+  "specification": {
+
+    "resolution": "3840 x 2160",
+
+    "refresh_rate": "144Hz",
+
+    "panel_type": "IPS"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.7,
+
+  "brand": "GameVision"
+
+},
+
+{
+
+  "id": 8,
+
+  "title": "SmartHome Hub 2.0",
+
+  "image": "https://i.ibb.co/kmCdm4P/7-Gaming-monitor.png",
+
+  "category": "Smart Home",
+
+  "price": 199.99,
+
+  "description": "Control all your smart devices with the SmartHome Hub 2.0 and enjoy seamless automation.",
+
+  "specification": {
+
+    "compatibility": ["Zigbee", "Z-Wave", "Wi-Fi"],
+
+    "voice_assistant": "Yes",
+
+    "features": ["Home Automation", "Energy Monitoring"]
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.5,
+
+  "brand": "HomeTech"
+
+},
+
+{
+
+  "id": 9,
+
+  "title": "Virtual Reality Headset Pro",
+
+  "image": "https://i.ibb.co/rdrTTJV/9-1-appple-vr.jpg",
+
+  "category": "Accessories",
+
+  "price": 399.99,
+
+  "description": "Immerse yourself in stunning virtual worlds with the latest VR Headset Pro.",
+
+  "specification": {
+
+    "resolution": "2560 x 1440",
+
+    "field_of_view": "110 degrees",
+
+    "tracking": "Inside-out"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.6,
+
+  "brand": "VR World"
+
+},
+
+{
+
+  "id": 10,
+
+  "title": "Portable Power Bank 30,000mAh",
+
+  "image": "https://i.ibb.co/FDGg6y7/10-portable-power-bank.jpg",
+
+  "category": "Accessories",
+
+  "price": 49.99,
+
+  "description": "Stay charged on the go with this high-capacity portable power bank featuring fast charging.",
+
+  "specification": {
+
+    "capacity": "30,000mAh",
+
+    "charging_ports": "3 USB",
+
+    "fast_charging": "Yes"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.4,
+
+  "brand": "PowerTech"
+
+},
+
+{
+
+  "id": 11,
+
+  "title": "Foldable Laptop Stand",
+
+  "image": "https://i.ibb.co/fSVbF9y/11-Foldable-laptop-stand.jpg",
+
+  "category": "Accessories",
+
+  "price": 39.99,
+
+  "description": "Ergonomic and portable, this foldable laptop stand improves your workspace.",
+
+  "specification": {
+
+    "material": "Aluminum",
+
+    "adjustable_height": "Yes",
+
+    "weight": "1.5 lbs"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.2,
+
+  "brand": "ErgoStand"
+
+},
+
+{
+
+  "id": 12,
+
+  "title": "Noise-Cancelling Headphones 2024",
+
+  "image": "https://i.ibb.co/2nGs8yT/12-1-noise-cancelling-headphone.webp",
+
+  "category": "Accessories",
+
+  "price": 299.99,
+
+  "description": "Experience immersive sound with our latest noise-cancelling headphones.",
+
+  "specification": {
+
+    "battery_life": "30 hours",
+
+    "features": ["Bluetooth", "Voice Assistant", "Touch Controls"]
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.8,
+
+  "brand": "SoundWave"
+
+},
+
+{
+
+  "id": 13,
+
+  "title": "Smart Fitness Tracker 5",
+
+  "image": "https://i.ibb.co/DQwbzb4/13-1-Smart-fitness-tracker.webp",
+
+  "category": "Wearables",
+
+  "price": 99.99,
+
+  "description": "Monitor your fitness goals with the Smart Fitness Tracker 5's advanced health metrics.",
+
+  "specification": {
+
+    "battery": "7 days",
+
+    "water_resistance": "50m",
+
+    "features": ["Heart Rate Monitor", "Sleep Tracking", "GPS"]
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.5,
+
+  "brand": "FitTech"
+
+},
+
+{
+
+  "id": 14,
+
+  "title": "Desktop Gaming PC 2024",
+
+  "image": "https://i.ibb.co/C7tfYFS/14-Desktop-gaming-pc.jpg",
+
+  "category": "Computers",
+
+  "price": 1999.99,
+
+  "description": "A powerful gaming PC with the latest graphics card and cooling technology.",
+
+  "specification": {
+
+    "processor": "Intel i7",
+
+    "ram": "32GB",
+
+    "storage": "2TB SSD",
+
+    "graphics_card": "NVIDIA RTX 4090"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 4.5,
+
+  "brand": "Dell"
+
+
+}
+
+]

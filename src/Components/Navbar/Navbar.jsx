@@ -2,11 +2,13 @@ import React from 'react';
 import { MdMenu } from "react-icons/md";
 import { IoHeartOutline } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { NavLink } from 'react-router-dom';
+import Banner from '../Banner/Banner';
 
 const Navbar = () => {
 
     const links = <>
-        <li><a>Home</a></li>
+        <li><NavLink to="/">Home</NavLink></li>
        
        <li><a>Statistics</a></li>
 
@@ -17,7 +19,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100 container mx-auto">
+        <div className="navbar bg-[#9538E2] rounded-t-xl container mx-auto mt-2">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -58,3 +60,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
