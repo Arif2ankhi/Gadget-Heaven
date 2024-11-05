@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdMenu } from "react-icons/md";
 import { IoHeartOutline } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
@@ -9,12 +8,11 @@ const Navbar = () => {
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
-       
-       <li><a>Statistics</a></li>
+       <li><NavLink to="/statistics">Statistics</NavLink></li>
+       <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+       <li><NavLink to="/Login">Login</NavLink></li>
 
-       <li><a>DashBoard </a></li>
-
-       <li><a>Log in </a></li>
+      
     
     </>
 

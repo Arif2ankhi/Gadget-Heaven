@@ -9,6 +9,9 @@ import {
 import Root from './Components/Root/Root';
 import ErrorPage from './Components/ErrorPage/ErrorPage';
 import Home from './Components/Home/Home';
+import Dashboard from './Components/Page/Dashboard';
+import Statistics from './Components/Page/Statistics';
+import Login from './Components/Page/Login';
 
 const router = createBrowserRouter([
   {
@@ -19,9 +22,21 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path: '/dashboard',
+        element:<Dashboard></Dashboard>
+      },
+      {
+        path: '/statistics',
+        element: <Statistics></Statistics>
+      },
+      {
+        path: '/login',
+        element: <Login></Login> // Default error page for unmatched routes
       }
     ]
-  },
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
