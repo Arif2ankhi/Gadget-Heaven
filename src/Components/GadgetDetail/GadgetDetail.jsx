@@ -84,33 +84,46 @@ const GadgetDetail = () => {
                 Price: ${price}
               </p>
 
-              <p className="text-xl font-semibold  text-green-700 mt-2">
+              {/* <p className="text-xl font-semibold  text-green-700 mt-2">
                 Availability: {availability}
-              </p>
+              </p> */}
               <p className="text-xl font-semibold  text-green-700 mt-2">
                 {category}
               </p>
               <p className="text-xl font-semibold  text-green-700 mt-2">
-                Brand: {brand}
+                 {brand}
               </p>
               
-              {/* <p className="text-xl font-semibold  text-green-700 mt-2">
-                Specification: [""]
-              </p>
-               */}
+             
+
+           <div>
+           <div>
+  <h2 className="font-semibold text-lg text-gray-800">
+    Specification:
+  </h2>
+  <ul className="list-disc list-inside text-gray-700 ml-4">
+    {Object.entries(specification).map(([key, value], index) => (
+      <li key={index}>
+        <span className="font-semibold capitalize">{key.replace('_', ' ')}:</span> {Array.isArray(value) ? value.join(', ') : value}
+      </li>
+    ))}
+  </ul>
+</div>
+           </div>
 
               <div className="flex gap-2"></div>
 
             </div>
-            <div
-              className={`inline-block px-3 py-1 rounded-full text-xs font-medium border  ${
-                availability
-                  ? "bg-green-100 text-green-800 border-green-400 w-[70px]"
-                  : "bg-red-100 text-red-800 border-red-400 w-[95px]"
-              }`}
-            >
-              {availability ? "In Stock" : "Out of Stock"}
-            </div>
+            {availability ? (
+            <button className="px-2 py-1 border mt-2 border-green-500 font-bold  rounded-xl text-green-500">
+              In stock
+            </button>
+          ) : (
+            <button className="px-2 py-1 mt-2 border border-red-500 inline-block rounded-xl font-bold text-red-500">
+              Out of Stock
+            </button>
+          )}
+           
             <p className="text-gray-600">{description}</p>
             <div>
               <h2 className="font-semibold text-lg text-gray-800">
@@ -133,61 +146,61 @@ const GadgetDetail = () => {
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-1 bg-green-500"
+                  className="mask mask-star-2 mask-half-1 bg-yellow-300"
                   defaultChecked={itemRating >= 0.5}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-2 bg-green-500"
+                  className="mask mask-star-2 mask-half-2  bg-yellow-300"
                   defaultChecked={itemRating >= 1}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-1 bg-green-500"
+                  className="mask mask-star-2 mask-half-1  bg-yellow-300"
                   defaultChecked={itemRating >= 1.5}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-2 bg-green-500"
+                  className="mask mask-star-2 mask-half-2  bg-yellow-300"
                   defaultChecked={itemRating >= 2}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-1 bg-green-500"
+                  className="mask mask-star-2 mask-half-1  bg-yellow-300"
                   defaultChecked={itemRating >= 2.5}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-2 bg-green-500"
+                  className="mask mask-star-2 mask-half-2  bg-yellow-300"
                   defaultChecked={itemRating >= 3}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-1 bg-green-500"
+                  className="mask mask-star-2 mask-half-1  bg-yellow-300"
                   defaultChecked={itemRating >= 3.5}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-2 bg-green-500"
+                  className="mask mask-star-2 mask-half-2  bg-yellow-300"
                   defaultChecked={itemRating >= 4}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-1 bg-green-500"
+                  className="mask mask-star-2 mask-half-1  bg-yellow-300"
                   defaultChecked={itemRating >= 4.5}
                 />
                 <input
                   type="radio"
                   name="rating-10"
-                  className="mask mask-star-2 mask-half-2 bg-green-500"
+                  className="mask mask-star-2 mask-half-2  bg-yellow-300"
                   defaultChecked={itemRating >= 5}
                 />
               </div>
@@ -232,3 +245,4 @@ const GadgetDetail = () => {
 };
 
 export default GadgetDetail;
+

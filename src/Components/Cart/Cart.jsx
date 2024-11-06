@@ -2,7 +2,9 @@ import React from 'react';
 
 import { AiFillDelete } from "react-icons/ai";
 
-const Cart = () => {
+const Cart = ({cartItem}) => {
+
+    const { title, image, price, description } = cartItem;
     return (
         <>
          <div className="relative bg-base-200 my-8 rounded-xl p-6">
