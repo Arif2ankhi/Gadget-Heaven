@@ -15,7 +15,7 @@ const Statistics = () => {
                 Gadget Heaven - Statistics Page
             </title>
         </Helmet>
-    <h2 className="text-9xl w-8/12 mx-auto h-96 bg-[#9538E2] font-extrabold items-center text-center mt-60 " >No thing to show</h2>
+    <h2 className="text-9xl w-8/12 mx-auto h-96 bg-[#9538E2] font-extrabold items-center text-center mt-60 " >Nothing to show</h2>
            
         </>
     );

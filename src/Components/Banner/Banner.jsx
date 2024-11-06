@@ -1,7 +1,7 @@
 import bannerImg from "../../assets/banner.jpg";
 const Banner = () => {
   return (
-    <div className="hero bg-[#9538E2] container mx-auto  p-20 pb-72 mb-96 rounded-b-xl  h-96 relative">
+    <div className="hero bg-[#9538E2] container mx-auto  p-20 pb-72  rounded-b-xl  h-80 relative">
       <div className=" hero-content text-center">
         <div className="w-2/3 text-white">
           <h1 className="text-4xl font-bold text-white mb-5 ">
