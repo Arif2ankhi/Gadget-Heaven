@@ -74,7 +74,7 @@
 
   "title": "WearFit Max Smart Watch",
 
-  "image": "https://i.ibb.co/sV6XfMv/3-Wearfit-max-smart-watch.jpg",
+  "image": "https://i.ibb.co/G9RNMWW/smart-watch-edt.png",
 
   "category": "Smart Watches",
 
@@ -428,7 +428,7 @@
 
   "title": "Desktop Gaming PC 2024",
 
-  "image": "https://i.ibb.co/C7tfYFS/14-Desktop-gaming-pc.jpg",
+  "image": "https://i.ibb.co/fN4c6Gm/Gaming-pc-edt.jpg",
 
   "category": "Computers",
 
@@ -454,6 +454,40 @@
 
   "brand": "Dell"
 
+
+},
+
+{
+
+  "id": 15,
+
+  "title": "MacBook Pro 2024",
+
+  "image": "https://i.ibb.co/0nhdS49/mAC-PRO.jpg",
+
+  "category": "Laptops",
+
+  "price": 2299.99,
+
+  "description": "The MacBook Pro 2024 is lighter, faster, and has an improved Retina display.",
+
+  "specification": {
+
+    "processor": "Apple MM2",
+
+    "ram": "128GB",
+
+    "storage": "1024GB SSD",
+
+    "display": "15-inch Retina"
+
+  },
+
+  "availability": "In Stock",
+
+  "rating": 5.0,
+
+  "brand": "Apple"
 
 }
 

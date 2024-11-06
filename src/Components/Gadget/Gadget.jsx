@@ -1,11 +1,13 @@
 import React from "react";
 import gadget from '../../../public/gadget.json';
+import { Link } from "react-router-dom";
 
 const Gadget = ({ gadget }) => {
-  const { title, image, price } = gadget;
+  const {id, title, image, price } = gadget;
 
   return (
-    <div className="card bg-base-100 w-96  shadow-xl p-6">
+    <Link to={`/gadgets/${id}`}>
+        <div className="card bg-base-100 w-96  shadow-xl p-6">
       {/* <figure className="px-10 pt-10 bg-slate-500 "> */}
       <figure className="bg-gray-300 py-8  rounded-2xl">
         <img
@@ -22,6 +24,8 @@ const Gadget = ({ gadget }) => {
         </div>
       </div>
     </div>
+    
+    </Link>
   );
 };
 

@@ -12,6 +12,7 @@ import Home from './Components/Home/Home';
 import Dashboard from './Components/Page/Dashboard';
 import Statistics from './Components/Page/Statistics';
 import Login from './Components/Page/Login';
+import GadgetDetail from './Components/GadgetDetail/GadgetDetail';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,14 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+
+      {
+        path: 'gadgets/:Id',
+        element: <GadgetDetail></GadgetDetail>,
+        loader: () => fetch('/gadget.json')
+        .then(res => res.json())
+
       },
       {
         path: '/dashboard',
@@ -44,3 +53,4 @@ createRoot(document.getElementById('root')).render(
    <RouterProvider router={router} />
   </StrictMode>,
 )
+
