@@ -1,62 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import  'react-toastify/dist/ReactToastify.css'
-import { addToFavList, getFavList } from '../Utilities/addToFav';
-import { addToCartList, getCartList } from '../Utilities/addToCart';
+import React, { useEffect, useState } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { addToFavList, getFavList } from "../Utilities/addToFav";
+import { addToCartList, getCartList } from "../Utilities/addToCart";
 import { GoHeart } from "react-icons/go";
 
 const GadgetDetail = () => {
+  const { Id } = useParams();
+  const data = useLoaderData();
 
-    const {Id} = useParams();
-    const data = useLoaderData();
+  const gadgetId = parseInt(Id);
 
-    const gadgetId = parseInt(Id);
+  const gadget = data.find((gadget) => gadget.id === gadgetId);
+  // console.log(gadget);
 
-    const gadget = data.find(gadget => gadget.id === gadgetId);
-    // console.log(gadget);
+  const {
+    title,
+    price,
+    availability,
+    description,
+    image,
+    specification,
+    category,
+    brand,
+    rating
+  } = gadget;
 
-    const {
-        title, price,
-        availability, description,
-        image, specification, category, brand,
-        rating,
-      } = gadget;
-    
-       const itemRating = Math.round(rating * 2) / 2;
+  const itemRating = Math.round(rating * 2) / 2;
 
-       const [favDisabled, setFavDisabled] = useState(false);
-       const [ cartDisabled, setCartDisabled] = useState(false);
+  const [favDisabled, setFavDisabled] = useState(false);
+  const [cartDisabled, setCartDisabled] = useState(false);
 
-      useEffect(() => {
-        const favList = getFavList();
-        const cartList = getCartList();
-        
-        setFavDisabled(favList.includes(gadgetId));
-        setCartDisabled(cartList.includes(gadgetId) ||!availability);
+  useEffect(() => {
+    const favList = getFavList();
+    const cartList = getCartList();
 
-      } , [] ); 
+    setFavDisabled(favList.includes(gadgetId));
+    setCartDisabled(cartList.includes(gadgetId) || !availability);
+  }, []);
 
-      const addToFav = () => {
-        addToFavList(gadgetId);
-        setFavDisabled(true);
-        toast.success("Added to favorites!", { position: "top-center" });
+  const addToFav = () => {
+    addToFavList(gadgetId);
+    setFavDisabled(true);
+    toast.success("Added to favorites!", { position: "top-center" });
+  };
 
-      };
+  const addToCart = () => {
+    addToCartList(gadgetId);
+    setCartDisabled(true);
+    toast.success("Added to cart!", { position: "top-center" });
+  };
 
-      const addToCart = () => {
-        addToCartList(gadgetId)
-        setCartDisabled(true);
-        toast.success("Added to cart!", { position: "top-center" });
-      };
-
-    
-
-    return (
-        <>
-        
-        <ToastContainer></ToastContainer>
-        <div className="relative">
+  return (
+    <>
+      <ToastContainer></ToastContainer>
+      <div className="relative">
         <div className="text-center bg-[#9538E2] p-10 pb-80">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl font-bold text-white mb-4">
@@ -91,47 +90,47 @@ const GadgetDetail = () => {
                 {category}
               </p>
               <p className="text-xl font-semibold  text-green-700 mt-2">
-                 {brand}
+                {brand}
               </p>
-              
-             
 
-           <div>
-           <div>
-  <h2 className="font-semibold text-lg text-gray-800">
-    Specification:
-  </h2>
-  <ul className="list-disc list-inside text-gray-700 ml-4">
-    {Object.entries(specification).map(([key, value], index) => (
-      <li key={index}>
-        <span className="font-semibold capitalize">{key.replace('_', ' ')}:</span> {Array.isArray(value) ? value.join(', ') : value}
-      </li>
-    ))}
-  </ul>
-</div>
-           </div>
+              <div>
+                <div>
+                  <h2 className="font-semibold text-lg text-gray-800">
+                    Specification:
+                  </h2>
+                  <ul className="list-disc list-inside text-gray-700 ml-4">
+                    {Object.entries(specification).map(
+                      ([key, value], index) => (
+                        <li key={index}>
+                          <span className="font-semibold capitalize">
+                            {key.replace("_", " ")}:
+                          </span>{" "}
+                          {Array.isArray(value) ? value.join(", ") : value}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </div>
 
               <div className="flex gap-2"></div>
-
             </div>
             {availability ? (
-            <button className="px-2 py-1 border mt-2 border-green-500 font-bold  rounded-xl text-green-500">
-              In stock
-            </button>
-          ) : (
-            <button className="px-2 py-1 mt-2 border border-red-500 inline-block rounded-xl font-bold text-red-500">
-              Out of Stock
-            </button>
-          )}
-           
+              <button className="px-2 py-1 border mt-2 border-green-500 outline-block font-bold  rounded-xl text-green-500">
+                In stock
+              </button>
+            ) : (
+              <button className="px-2 py-1 mt-2 border border-red-500 outline-block rounded-xl font-bold text-red-500">
+                Out of Stock
+              </button>
+            )}
+
             <p className="text-gray-600">{description}</p>
             <div>
               <h2 className="font-semibold text-lg text-gray-800">
                 Specification:
               </h2>
-              <ul className="list-decimal list-inside text-gray-700 ml-4">
-        
-              </ul>
+              <ul className="list-decimal list-inside text-gray-700 ml-4"></ul>
             </div>
             <div>
               <h2 className="font-semibold text-lg text-gray-800">
@@ -231,18 +230,18 @@ const GadgetDetail = () => {
                     : "text-purple-600 border-purple-600 hover:bg-purple-100"
                 }`}
               >
-                {/* <img className="w-3/5" src="/heart.png" alt="" /> */}
-                <a className="btn bg-white px-3 rounded-full border-b-fuchsia-200 font-bold text-xl"><GoHeart /></a>
+                {/* <a role="tab" className="tab tab-active">Cart</a>
+                <a role="tab" className="tab tab-active">WishList</a> */}
+                <a className="btn bg-white px-3 rounded-full border-b-fuchsia-200 font-bold text-xl">
+                  <GoHeart />
+                </a>
               </button>
             </div>
           </div>
         </div>
       </div>
-            
-
-        </> 
-    );
+    </>
+  );
 };
 
 export default GadgetDetail;
-

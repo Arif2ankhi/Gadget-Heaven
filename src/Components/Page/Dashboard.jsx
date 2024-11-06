@@ -1,281 +1,152 @@
 
-// import React from 'react';
-// import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
-// const Dashboard = () => {
-// const {pathname} = useLocation
+import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import Cart from "../Cart/Cart";
+import WishList from "../WishList/WishList";
+import { addToCartList } from "../Utilities/addToCart";
+import { ToastContainer, toast } from "react-toastify"; // Import ToastContainer and toast
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
-//     return (
-//         <>
-//         <div className="W-full text-center bg-[#9538E2] pt-8 pb-6">
-//         <h1 className="text-white font-semibold text-4xl">Dashboard</h1>
-//         <p className="text-white text-sm font-light leading-[1.5] my-3">
-//           Explore the latest gadgets that will take your experience to the next
-//           level. From smart devices to
-//           <br /> the coolest accessories, we have it all!
-//         </p>
-//         <NavLink to="dashboard/cart"
-//         className={({ isActive }) =>
-//             isActive ||
-//             pathname === "/dashboard" ||
-//             pathname === "/dashboard/cart"
-//               ? "bg-white text-[#9538E2] font-semibold rounded-full"
-//               : "bg-[#9538E2] border border-white text-black font-bold space-x-4 rounded-full"
-//           }
-//         >
-//         <button className="px-10 py-2">Cart</button>
-//         </NavLink>
-//         <NavLink
-//             to="/dashboard/wishlist"
-//             className={({ isActive }) =>
-//               isActive
-//                 ? "bg-white text-[#9538E2] font-semibold rounded-full"
-//                 : "bg-[#9538E2] border border-white text-black font-bold rounded-full"
-//             }
-//           >
+const Dashboard = () => {
+  const [cartList, setCartList] = useState([]);
+  const [wishList, setWishList] = useState([]);
+  const [activeView, setActiveView] = useState("cart");
+  const [sortOrder, setSortOrder] = useState("desc"); // State to keep track of sort order
 
-//         <button className="px-10 py-2">Wishlist</button>
-//         </NavLink>
+  const allItems = useLoaderData();
 
-//         <Outlet></Outlet> 
-//       </div>
-      
+  // Load cart items
+//   useEffect(() => {
+//     const storedCartList = getStoredCartList();
+//     const cartItems = storedCartList
+//       .map((id) => allItems.find((item) => item.id === id))
+//       .filter((item) => item);
+//     setCartList(cartItems);
+//   }, [allItems]);
 
-
-//       </>
-      
-//     );
-// };
-
-// export default Dashboard;
-
-import React, { useState, useEffect } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
-// import { getCartList, setCartList } from "../utils/addToCart";
-// import { getFavList, setFavList } from "../utils/addToFav";
-import { Helmet } from "react-helmet";
-
-const DashBoard = () => {
-  const [showCart, setShowCart] = useState(true);
-  const [cart, setCart] = useState([]);
-  const [fav, setFav] = useState([]);
-  const [isSortedDesc, setIsSortedDesc] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-  const gadgets = useLoaderData();
-  const navigate = useNavigate();
-
+  // Load wishlist items
   useEffect(() => {
-    const updateCartAndFavLists = () => {
-      const storedCartList = getCartList();
-      const storedFavList = getFavList();
+    const storedWishList = getStoredWishList();
+    const wishItems = storedWishList
+      .map((id) => allItems.find((item) => item.id === id))
+      .filter((item) => item);
+    setWishList(wishItems);
+  }, [allItems]);
 
-      const cartList = gadgets.filter((gadget) =>
-        storedCartList.includes(gadget.id)
-      );
-      const favList = gadgets.filter((gadget) =>
-        storedFavList.includes(gadget.id)
-      );
-
-      setCart(cartList);
-      setFav(favList);
-
-      const cartTotal = cartList.reduce((sum, item) => sum + item.price, 0);
-      setTotalPrice(cartTotal);
-    };
-
-    updateCartAndFavLists();
-  }, [gadgets]);
-
-  const handleSort = () => {
-    const sortedCart = [...cart].sort((a, b) =>
-      isSortedDesc ? a.price - b.price : b.price - a.price
-    );
-    setCart(sortedCart);
-    setIsSortedDesc(!isSortedDesc);
+  // Toggle between cart and wishlist
+  const toggleView = (view) => {
+    setActiveView(view);
   };
 
-  const handlePurchase = () => {
-    setCart([]);
-    setCartList([]);
-    setShowModal(true);
+  // Handle sorting by price
+  const handleSortByPrice = () => {
+    const sortedCartList = [...cartList];
+    sortedCartList.sort((a, b) => {
+      if (sortOrder === "desc") {
+        return b.price - a.price; // Sort in descending order
+      } else {
+        return a.price - b.price; // Sort in ascending order
+      }
+    });
+    setCartList(sortedCartList);
+    setSortOrder(sortOrder === "desc" ? "asc" : "desc"); // Toggle sort order for the next click
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    navigate("/");
+  const handleRemoveFromCart = (id) => {
+    removeFromStoredCartList(id); // Remove from localStorage
+    const updatedCartList = cartList.filter((item) => item.id !== id); // Remove from state
+    setCartList(updatedCartList); // Update the state
   };
 
-  const removeFromCart = (id) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    setCart(updatedCart);
-    setCartList(updatedCart.map((item) => item.id));
-
-    const updatedTotal = updatedCart.reduce((sum, item) => sum + item.price, 0);
-    setTotalPrice(updatedTotal);
+  const handleRemoveFromWishList = (id) => {
+    removeFromStoredWishList(id); // Remove from localStorage
+    const updatedWishList = wishList.filter((item) => item.id !== id); // Remove from state
+    setWishList(updatedWishList); // Update the state
   };
 
-  const removeFromFav = (id) => {
-    const updatedFav = fav.filter((item) => item.id !== id);
-    setFav(updatedFav);
-    setFavList(updatedFav.map((item) => item.id));
+  const handleAddToCart = (item) => {
+    addToCartList(item.id);
+    setCartList([...cartList, item]); // Add item to the state
+    toast.success("Item added to cart successfully!"); // Show success toast notification
   };
 
   return (
-    <>
-      <Helmet>
-        <title>Dashboard || Gadget Haven</title>
-      </Helmet>
-      <div className="text-center bg-[#9538E2] p-10">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold text-white mb-4">Dashboard</h1>
-          <p className="text-lg text-white mb-6">
-            Welcome to your Gadget Heaven Dashboard. Explore the latest tech
-            trends, manage your purchases, and track your orders all in one
-            place.
-          </p>
-        </div>
-        <div className="space-x-4">
-          <button
-            onClick={() => setShowCart(true)}
-            className={`btn rounded-full ${
-              showCart ? "bg-[#9538E2] text-white" : "bg-white"
-            }`}
-          >
-            Cart
-          </button>
-          <button
-            onClick={() => setShowCart(false)}
-            className={`btn rounded-full ${
-              !showCart ? "bg-[#9538E2] text-white" : "bg-white"
-            }`}
-          >
-            Wish List
-          </button>
-        </div>
-      </div>
-      <div className="max-w-3xl mx-auto p-6">
-        {showCart ? (
-          <div>
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
-              <span className="text-lg font-semibold text-[#9538E2]">
-                Total: ${totalPrice.toFixed(2)}
-              </span>
-              <div className="flex gap-4 items-center">
-                <button onClick={handleSort} className="btn rounded-full">
-                  Sort by Price ({isSortedDesc ? "Ascending" : "Descending"})
-                </button>
-                <button
-                  onClick={handlePurchase}
-                  className="btn bg-[#9538E2] text-white rounded-full"
-                  disabled={cart.length === 0 || totalPrice === 0}
-                >
-                  Purchase
-                </button>
-              </div>
-            </div>
-            <div>
-              {cart.map((item) => (
-                <div
-                  key={item.id}
-                  className="card bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center gap-4 my-4"
-                >
-                  <div className="flex gap-4 items-center">
-                    <img
-                      className="rounded-xl w-32 h-32"
-                      src={item.image}
-                      alt={item.title}
-                    />
-                    <div className="flex flex-col justify-center">
-                      <h3 className="text-lg font-bold">{item.title}</h3>
-                      <p className="text-sm text-gray-700">
-                        {item.description}
-                      </p>
-                      <p className="text-md font-semibold text-[#9538E2]">
-                        ${item.price}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-red-500 text-2xl"
-                    >
-                      &times;
-                    </button>
-                  </div>
-                </div>
-              ))}
-              {cart.length === 0 && (
-                <p className="text-center text-gray-500">Your cart is empty.</p>
-              )}
+    <div>
+      <ToastContainer /> {/* Toast container for notifications */}
+      <div className="bg-[#9538E2]">
+        <div className="text-center">
+          <div className="max-w-md mx-auto pt-10 text-white">
+            <h1 className="text-5xl font-bold">Dashboard</h1>
+            <p className="py-6">
+              Explore the latest gadgets that will take your experience to the
+              next level. From smart devices to the coolest accessories, we have
+              it all.
+            </p>
+            <div className="flex gap-2 justify-center pb-10">
+              <button
+                className="btn rounded-full bg-[#9538E2] text-white"
+                onClick={() => toggleView("cart")}
+              >
+                <i className="fas fa-shopping-cart text-white"></i> Cart
+              </button>
+              <button
+                className="btn rounded-full bg-[#9538E2] text-white"
+                onClick={() => toggleView("wishList")}
+              >
+                <i className="fa-solid fa-heart"></i> Wish List
+              </button>
             </div>
           </div>
-        ) : (
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">Your Wish List</h2>
-            <div>
-              {fav.map((item) => (
-                <div
-                  key={item.id}
-                  className="card bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center gap-4 my-4"
-                >
-                  <div className="flex gap-4 items-center">
-                    <img
-                      className="rounded-xl w-32 h-32"
-                      src={item.image}
-                      alt={item.title}
-                    />
-                    <div className="flex flex-col justify-center">
-                      <h3 className="text-lg font-bold">{item.title}</h3>
-                      <p className="text-sm text-gray-700">
-                        {item.description}
-                      </p>
-                      <p className="text-md font-semibold text-[#9538E2]">
-                        ${item.price}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => removeFromFav(item.id)}
-                      className="text-red-500 text-2xl"
-                    >
-                      &times;
-                    </button>
-                  </div>
-                </div>
-              ))}
-              {fav.length === 0 && (
-                <p className="text-center text-gray-500">
-                  Your wish list is empty.
-                </p>
-              )}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
 
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm text-center">
-            <div className="flex justify-center">
-              <img src="/group.png" alt="" />
+      {/* Cart view */}
+      {activeView === "cart" && (
+        <div className="mb-[200px] mt-2 p-4">
+          <div className="flex justify-between">
+            <h3 className="text-2xl font-bold">Cart ({cartList.length})</h3>
+            <h3 className="text-2xl font-bold">
+              Total Cost: $
+              {cartList.reduce((total, item) => total + item.price, 0)}
+            </h3>
+            <div className="flex gap-2">
+              <button
+                className="btn w-32 rounded-full text-purple-900 border-purple-900"
+                onClick={handleSortByPrice} // Sorting by price on button click
+              >
+                Sort By Price
+              </button>
+              <button className="btn w-32 rounded-full bg-[#9538E2] text-white">
+                Purchase
+              </button>
             </div>
-            <h2 className="text-2xl font-semibold mb-4">Payment Successfull</h2>
-            <p className="text-lg mb-4">
-              Thanks for purchasing <br />
-              <span className="font-bold">Total: ${totalPrice.toFixed(2)}</span>
-              .
-            </p>
-            <button
-              onClick={handleCloseModal}
-              className="btn bg-[#9538E2] text-white mt-4"
-            >
-              Close
-            </button>
           </div>
+          {cartList.map((cartItem) => (
+            <Cart key={cartItem.id} cart={cartItem} />
+          ))}
         </div>
       )}
-    </>
+
+      {/* Wishlist view */}
+      {activeView === "wishList" && (
+        <div className="mb-[200px] mt-2 p-4">
+          <div className="flex justify-between">
+            <h3 className="text-2xl font-bold">
+              Wish List ({wishList.length})
+            </h3>
+          </div>
+          {wishList.map((wishItem) => (
+            <WishList
+              key={wishItem.id}
+              wish={wishItem}
+              onAddToCart={() => handleAddToCart(wishItem)} // Pass handleAddToCart function
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
-export default DashBoard;
+export default Dashboard;
